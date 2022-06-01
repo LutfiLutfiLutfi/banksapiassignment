@@ -1,0 +1,90 @@
+<div class="container mb-2 mt-5 border border-secondary rounded p-4">
+
+    <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" class="row g-3 needs-validation" novalidate>
+    <div class="form-group">
+        <label for="validationCustom01" class="form-label">Account name</label>
+        <input type="text" class="form-control" id="validationCustom01" value=" " formControlName="name">
+        <div *ngIf="aname.invalid && (aname.dirty || aname.touched)" class="alert alert-danger">
+        
+            <div *ngIf="aname.errors?.['required']">
+                name should exist
+            </div>
+        <div *ngIf="aname.valid && (aname.dirty || aname.touched)" class="alert ">
+            Name is valid.
+        </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="validationCustom02" class="form-label">IBAN number</label>
+        <input type="text" class="form-control" id="validationCustom02" formControlName="iban">
+        <div *ngIf="aiban.invalid && (aiban.dirty || aiban.touched)" class="alert alert-danger">
+        
+            <div *ngIf="aiban.errors?.['required']">
+                IBAN is required.
+            </div>
+            <div *ngIf="aiban.errors?.['iban']">
+                IBAN is invalid
+            </div>
+        
+        </div>
+        <div *ngIf="aiban.valid && (aiban.dirty || aiban.touched)" class="alert ">
+            IBAN is valid.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="validationCustomUsername" class="form-label">Date</label>
+        <div class="input-group has-validation">   
+        <input type="date" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
+            formControlName="date">
+            <div *ngIf="adate.invalid && (adate.dirty || adate.touched)" class="alert alert-danger">
+            
+                <div *ngIf="adate.errors?.['required']">
+                    date should exist
+                </div>
+                <div *ngIf="adate.valid && (adate.dirty || adate.touched)" class="alert ">
+                    date is valid.
+                </div>
+            </div>>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="validationCustom03" class="form-label">Amount</label>
+        <input type="text" class="form-control" id="validationCustom03" formControlName="amount">
+        <div *ngIf="aamount.invalid && (aamount.dirty || aamount.touched)" class="alert alert-danger">
+        
+            <div *ngIf="aamount.errors?.['required']">
+               amount should exist
+            </div>
+            <div *ngIf="aamount.errors?.['min']">
+                amount is too low
+            </div>
+            <div *ngIf="aamount.errors?.['max']">
+                amount is too high
+            </div>
+        
+        </div>
+        <div *ngIf="aamount.valid && (aamount.dirty || aamount.touched)" class="alert ">
+            amount is valid.
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="validationCustom04" class="form-label">Note</label>
+        <textarea rows="3" class="form-control" id="validationCustom03" formControlName="note"></textarea>
+        <div *ngIf="anote.invalid && (anote.dirty || anote.touched)" class="alert alert-danger">
+        
+            <div *ngIf="anote.errors?.['required']">
+                note should exist
+            </div>
+            <div *ngIf="anote.valid && (anote.dirty || anote.touched)" class="alert ">
+                note is valid.
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+</form>
+</div>
+

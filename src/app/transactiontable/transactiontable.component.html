@@ -1,0 +1,29 @@
+<app-trasactionform></app-trasactionform>
+<div class="container mt-4 mb-5" >
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Account holder</th>
+            <th scope="col">IBAN</th>
+            <th scope="col">DATE</th>
+            <th scope="col">AMOUNT</th>
+            <th scope="col">Note</th>
+            <th scope="col">Edit/delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let x of traninfo$ | async" class="ball">
+            <td *ngIf="!edito"> {{x.accholder.toUpperCase()}}</td>
+            <td *ngIf="!edito">
+                <p>{{x.iban | ibanFormatter}}</p>
+            </td>
+            <td *ngIf="!edito">{{x.date| date: 'dd.MM.yyyy'}}</td>
+            <td *ngIf="!edito">{{x.amount | currency:'EUR':true}}</td>
+            <td *ngIf="!edito">{{x.note}}</td>
+            <td *ngIf="!edito"><button class="btn btn-success btn-sm rounded-0 m-2" (click)="edit(x)">edit</button>
+                <button class="btn btn-success btn-sm rounded-0 btn-danger m-2" (click)="redelete(x)">delete</button>
+            </td>
+        </tr>
+    </tbody>
+    <app-edit *ngIf="edito" [idno]="this.editid" (newItemEvent)="cardchange($event)"></app-edit>
+</table>
